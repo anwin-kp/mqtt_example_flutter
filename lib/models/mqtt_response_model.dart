@@ -25,7 +25,14 @@ class MqttResponseModel {
         taskFailed: taskFailed ?? this.taskFailed,
         taskInprogress: taskInprogress ?? this.taskInprogress,
       );
-
+  factory MqttResponseModel.initial() {
+    return MqttResponseModel(
+      count: 0,
+      taskCompleted: 0,
+      taskFailed: 0,
+      taskInprogress: 0,
+    );
+  }
   factory MqttResponseModel.fromRawJson(String str) =>
       MqttResponseModel.fromJson(json.decode(str));
 

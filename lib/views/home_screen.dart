@@ -187,6 +187,13 @@ class _MyHomePageState extends State<MyHomePage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               homeViewModel.incrementCounter();
+              homeViewModel.publishMqttMessage({
+                'count': 12,
+                "task_completed": 24,
+                "task_failed": 13,
+                "task_inprogress": 3,
+                'message': 'Hello, MQTT!',
+              });
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),

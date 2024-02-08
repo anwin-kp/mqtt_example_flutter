@@ -88,6 +88,20 @@ class MqttRepository {
     }
   }
 
+  void publishMessage(Map<String, dynamic> message) {
+    final builder = MqttClientPayloadBuilder();
+    builder.addString(jsonEncode(message));
+
+    // Ensure builder.payload is not null before passing it to publishMessage
+    final payload = builder.payload!;
+
+    _client.publishMessage(
+      'anwin/mqtt/example/topic',
+      MqttQos.atLeastOnce,
+      payload,
+    );
+  }
+
   void _onConnected() {
     if (kDebugMode) {
       print('Connected');
