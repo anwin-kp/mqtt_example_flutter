@@ -188,10 +188,10 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               homeViewModel.incrementCounter();
               homeViewModel.publishMqttMessage({
-                'count': 12,
-                "task_completed": 24,
-                "task_failed": 13,
-                "task_inprogress": 3,
+                'count': 100,
+                "task_completed": 25,
+                "task_failed": 15,
+                "task_inprogress": 5,
                 'message': 'Hello, MQTT!',
               });
             },
