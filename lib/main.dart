@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'models/user_model.dart';
-import 'shared/helper/app_images.dart';
 import 'shared/helper/constants.dart';
 import 'viewmodels/dependency_change_view_model.dart';
 import 'viewmodels/home_viewmodel.dart';
@@ -36,18 +34,13 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-           navigatorKey: appNavigatorKey,
+          navigatorKey: appNavigatorKey,
           debugShowCheckedModeBanner: false,
           title: 'Flutter MQTT Demo',
           theme: ThemeData(
             useMaterial3: true,
           ),
-          home: MyHomePage(
-            user: User(
-                name: "Alexander",
-                email: "Alexander@gmail.com",
-                imageUrl: AppImages.userImage),
-          ),
+          home: const MyHomePage(),
         ),
       ),
     );

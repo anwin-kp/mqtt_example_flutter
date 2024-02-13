@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mqtt_example_flutter/shared/helper/route.dart';
 import 'package:provider/provider.dart';
 
-import '../models/user_model.dart';
 import '../shared/services/mqtt_repo.dart';
 import '../viewmodels/dependency_change_view_model.dart';
 import '../viewmodels/home_viewmodel.dart';
+import '../widgets/custom_appbars.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.user});
+  const MyHomePage({super.key,});
 
-  final User user;
+  
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -29,18 +30,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Consumer2<HomeViewModel, LifecycleHandler>(
       builder: (context, homeViewModel, lifecycleHandler, child) {
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: const Text(
-              "Flutter MQTT",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
-                fontFamily: "Roboto",
-                letterSpacing: 1.5,
-              ),
-            ),
+          appBar: CustomAppBar(
+            title: "Flutter MQTT",
+            onActionPressed: () {
+              Navigator.push(
+                context,
+                createEditScreenRoute(),
+              );
+            },
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -52,12 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         CircleAvatar(
-                          backgroundImage: AssetImage(widget.user.imageUrl),
+                          backgroundImage: AssetImage(homeViewModel.user.imageUrl),
                           radius: 50,
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          widget.user.name,
+                          homeViewModel.user.name,
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
@@ -65,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          widget.user.email,
+                          homeViewModel.user.email,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -81,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'You have pushed the button this many times:',
+                          'You have updated the status this many times:',
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -187,13 +184,6 @@ class _MyHomePageState extends State<MyHomePage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               homeViewModel.incrementCounter();
-              homeViewModel.publishMqttMessage({
-                'count': 100,
-                "task_completed": 25,
-                "task_failed": 15,
-                "task_inprogress": 5,
-                'message': 'Hello, MQTT!',
-              });
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
