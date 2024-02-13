@@ -2,11 +2,13 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'constants.dart';
+
 class Utility {
   Utility();
   String? validateInput(String? value) {
     if (value == null || value.isEmpty) {
-      return 'This field can\'t be empty';
+      return Constants.fieldCantBeEmptyText;
     }
     return null;
   }

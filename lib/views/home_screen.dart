@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mqtt_example_flutter/shared/helper/route.dart';
 import 'package:provider/provider.dart';
 
+import '../shared/helper/constants.dart';
 import '../shared/services/mqtt_repo.dart';
 import '../viewmodels/dependency_change_view_model.dart';
 import '../viewmodels/home_viewmodel.dart';
 import '../widgets/custom_appbars.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key,});
-
-  
+  const MyHomePage({
+    super.key,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -31,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, homeViewModel, lifecycleHandler, child) {
         return Scaffold(
           appBar: CustomAppBar(
-            title: "Flutter MQTT",
+            title: Constants.homeTitleText,
             onActionPressed: () {
               Navigator.push(
                 context,
@@ -49,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         CircleAvatar(
-                          backgroundImage: AssetImage(homeViewModel.user.imageUrl),
+                          backgroundImage:
+                              AssetImage(homeViewModel.user.imageUrl),
                           radius: 50,
                         ),
                         const SizedBox(height: 20),
@@ -70,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'Status',
+                          Constants.statusText,
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall!
@@ -78,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'You have updated the status this many times:',
+                          Constants.updatesStatusCountText,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -100,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Recent Activity',
+                          Constants.recentActivityText,
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall!
@@ -126,11 +128,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: <Widget>[
                                         Icon(Icons.check, color: Colors.green),
                                         SizedBox(width: 10),
-                                        Text('Task Completed'),
+                                        Text(Constants.taskCompletedCapsText),
                                       ],
                                     ),
                                     Text(
-                                        '${homeViewModel.mqttResponse.taskCompleted} mins ago'),
+                                        '${homeViewModel.mqttResponse.taskCompleted} ${Constants.minsAgoText}'),
                                   ],
                                 ),
                               ),
@@ -145,11 +147,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: <Widget>[
                                         Icon(Icons.error, color: Colors.red),
                                         SizedBox(width: 10),
-                                        Text('Task Failed'),
+                                        Text(Constants.taskFailedCapsText),
                                       ],
                                     ),
                                     Text(
-                                        '${homeViewModel.mqttResponse.taskFailed} mins ago'),
+                                        '${homeViewModel.mqttResponse.taskFailed} ${Constants.minsAgoText}'),
                                   ],
                                 ),
                               ),
@@ -165,11 +167,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                         Icon(Icons.warning,
                                             color: Colors.yellow),
                                         SizedBox(width: 10),
-                                        Text('Task In Progress'),
+                                        Text(Constants.taskInProgressCapsText),
                                       ],
                                     ),
                                     Text(
-                                        '${homeViewModel.mqttResponse.taskInprogress} hour ago'),
+                                        '${homeViewModel.mqttResponse.taskInprogress} ${Constants.hourAgoText}'),
                                   ],
                                 ),
                               ),
@@ -185,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               homeViewModel.incrementCounter();
             },
-            tooltip: 'Increment',
+            tooltip: Constants.incrementText,
             child: const Icon(Icons.add),
           ),
         );

@@ -30,12 +30,12 @@ class _DataEditingPageState extends State<DataEditingPage> {
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: const Text(
-              "Data Editing",
+              Constants.dataEditingText,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.blueGrey,
-                fontFamily: "Roboto",
+                fontFamily: Constants.fontFamilyText,
                 letterSpacing: 1.5,
               ),
             ),
@@ -51,7 +51,7 @@ class _DataEditingPageState extends State<DataEditingPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       const Text(
-                        'Data Editing',
+                        Constants.dataEditingText,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
@@ -60,21 +60,21 @@ class _DataEditingPageState extends State<DataEditingPage> {
                       const SizedBox(height: 15),
                       CustomTextFormField(
                         controller: _taskInProgressController,
-                        labelText: 'Task In Progress',
+                        labelText: Constants.taskInProgressCapsText,
                         hintText: homeViewModel.mqttResponse.taskInprogress
                             .toString(),
                       ),
                       const SizedBox(height: 15),
                       CustomTextFormField(
                         controller: _taskCompletedController,
-                        labelText: 'Task Completed',
+                        labelText: Constants.taskCompletedCapsText,
                         hintText:
                             homeViewModel.mqttResponse.taskCompleted.toString(),
                       ),
                       const SizedBox(height: 15),
                       CustomTextFormField(
                         controller: _taskFailedController,
-                        labelText: 'Task Failed',
+                        labelText: Constants.taskFailedCapsText,
                         hintText:
                             homeViewModel.mqttResponse.taskFailed.toString(),
                       ),
@@ -100,7 +100,7 @@ class _DataEditingPageState extends State<DataEditingPage> {
                               Constants.taskInProgressText:
                                   int.parse(_taskInProgressController.text),
                               Constants.messageText:
-                                  'Hello, MQTT! Update From Flutter App',
+                                  Constants.appMqttMessageText,
                             });
                           }
                         },

@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           navigatorKey: appNavigatorKey,
           debugShowCheckedModeBanner: false,
-          title: 'Flutter MQTT Demo',
+          title: Constants.appTitleText,
           theme: ThemeData(
             useMaterial3: true,
           ),
